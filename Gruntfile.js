@@ -6,6 +6,7 @@ module.exports = function( grunt ) {
   // https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
   //
   grunt.loadNpmTasks('grunt-recess');
+  grunt.loadNpmTasks('grunt-contrib-handlebars');
   grunt.initConfig({
 
     // Project configuration
@@ -38,6 +39,24 @@ module.exports = function( grunt ) {
           }
       }
     },
+    handlebars: {
+      compile: {
+        files: {
+          "temp/templates.js": [
+            "app/templates/**/*.hbs"
+          ]
+        },
+        options: {
+          namespace: 'App.Templates',
+          processName: function(filename) {
+            // funky name processing here
+            return filename
+                    .replace(/^app\/templates\//, '')
+                    .replace(/\.hbs$/, '');
+          }
+        }
+      }
+    },
     // generate application cache manifest
     manifest:{
       dest: ''
@@ -50,13 +69,17 @@ module.exports = function( grunt ) {
 
     // default watch configuration
     watch: {
+      handlebars: {
+        files: 'app/templates/**/*.hbs',
+        tasks: 'handlebars reload'
+      },
       coffee: {
         files: 'app/coffee/**/*.coffee',
         tasks: 'coffee reload'
       },
       recess: {
         files: [
-          'app/styles/**/*.{scss,sass}'
+          'app/less/**/*.less'
         ],
         tasks: 'recess reload'
       },
@@ -172,4 +195,8 @@ module.exports = function( grunt ) {
   // Alias the `test` task to run the `mocha` task instead
   grunt.registerTask('test', 'mocha');
   grunt.registerTask('compass', 'recess');
+  
+  //Add Handlebars to server
+  grunt.renameTask('clean', 'original-clean');
+  grunt.registerTask('clean', 'original-clean handlebars');
 };

@@ -1,9 +1,10 @@
 {
-  "author": "",
+  "author": "George Erickson",
   "name": "Template",
   "version": "0.0.0",
   "dependencies": {},
   "devDependencies": {
-    "grunt-recess": "latest"
+    "grunt-recess": "latest",
+    "grunt-contrib-handlebars": "latest"
   }
 }
