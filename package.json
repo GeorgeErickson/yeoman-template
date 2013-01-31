@@ -1,0 +1,9 @@
+{
+  "author": "",
+  "name": "Template",
+  "version": "0.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt-recess": "latest"
+  }
+}
