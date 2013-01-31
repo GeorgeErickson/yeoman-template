@@ -5,6 +5,8 @@
     "jquery": "~1.7.2",
     "backbone": "latest",
     "lodash": "latest",
-    "handlebars": "latest"
+    "handlebars": "latest",
+    "backbone-tastypie": "git://github.com/amccloud/backbone-tastypie.git",
+    "kyruus-bootstrap": "git://github.com/Kyruus/Kyruus-Bootstrap.git"
   }
 }
